@@ -1,23 +1,30 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using V20240408.EntidadesDeNegocio;
-using V20240408.AccesoADatos;
 using V20240408.LogicaDeNegocio;
 
 namespace V20240408.UI.AppWebMVC.Controllers
 {
     public class PersonaVController : Controller
     {
-        // GET: PersonaVController
-        public ActionResult Index()
+        readonly PersonaBL _personaBL;
+
+        public PersonaVController(PersonaBL personaBL)
         {
-            return View();
+            _personaBL = personaBL;
+        }
+        // GET: PersonaVController
+        public async Task <ActionResult> Index(PersonaV personaV)
+        {
+            var personas = await _personaBL.Buscar(personaV);
+            return View(personas);
         }
 
         // GET: PersonaVController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            var personaV = await _personaBL.ObtenerPorId(new PersonaV { Id = id });
+            return View(personaV);
         }
 
         // GET: PersonaVController/Create
@@ -29,10 +36,11 @@ namespace V20240408.UI.AppWebMVC.Controllers
         // POST: PersonaVController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(PersonaV personaV)
         {
             try
             {
+                await _personaBL.Crear(personaV);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -42,18 +50,20 @@ namespace V20240408.UI.AppWebMVC.Controllers
         }
 
         // GET: PersonaVController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            var personaV = await _personaBL.ObtenerPorId(new PersonaV { Id = id });
+            return View(personaV);
         }
 
         // POST: PersonaVController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(PersonaV personaV)
         {
             try
             {
+                await _personaBL.Modificar(personaV);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -63,18 +73,20 @@ namespace V20240408.UI.AppWebMVC.Controllers
         }
 
         // GET: PersonaVController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var personaV = await _personaBL.ObtenerPorId(new PersonaV { Id = id });
+            return View(personaV);
         }
 
         // POST: PersonaVController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, PersonaV personaV)
         {
             try
             {
+                await _personaBL.Eliminar(personaV);
                 return RedirectToAction(nameof(Index));
             }
             catch

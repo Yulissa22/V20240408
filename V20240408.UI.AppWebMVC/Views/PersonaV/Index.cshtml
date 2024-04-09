@@ -1,0 +1,84 @@
+﻿@model IEnumerable<V20240408.EntidadesDeNegocio.PersonaV>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<form asp-action="Index">
+    <div class="row">
+        <div class="form-group col-3">
+            <labe class="control-label">Nombre</labe>
+            <input type="text" name="nombre" class="form-control" />
+        </div>
+        <div class="form-group col-3">
+            <labe class="control-label">Apellido</labe>
+            <input type="text" name="apellido" class="form-control" />
+        </div>
+        <div class="row">
+            <div class="form-group col-12">
+                <input type="submit" value="Buscar" class="btn btn-outline-secondary" />
+                <a asp-action="Create" class="btn btn-outline-secondary">Crear nuevo registro</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<p>
+    
+</p>
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApellidoV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaNacimientoV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sueldoV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstatusV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComentarioV)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApellidoV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimientoV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sueldoV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstatusV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComentarioV)
+            </td>
+            <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id })
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }) 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

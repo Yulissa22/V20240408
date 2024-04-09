@@ -9,7 +9,7 @@ namespace V20240408.AccesoADatos
         public static IServiceCollection AddDALDependecies(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<AppDbContext>(options =>
-             options.UseSqlServer(configuration.GetConnectionString("conn")));
+             options.UseSqlServer(configuration.GetConnectionString("con")));
             services.AddScoped<PersonaDAL>();
 
             return services;

@@ -1,0 +1,55 @@
+﻿@model V20240408.EntidadesDeNegocio.PersonaV
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-success">Editar</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="Id" type="hidden" class="form-control" />
+            <div class="form-group">
+                <label asp-for="NombreV" class="control-label"></label>
+                <input asp-for="NombreV" class="form-control" />
+                <span asp-validation-for="NombreV" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApellidoV" class="control-label"></label>
+                <input asp-for="ApellidoV" class="form-control" />
+                <span asp-validation-for="ApellidoV" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaNacimientoV" class="control-label"></label>
+                <input asp-for="FechaNacimientoV" class="form-control" />
+                <span asp-validation-for="FechaNacimientoV" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="sueldoV" class="control-label"></label>
+                <input asp-for="sueldoV" class="form-control" />
+                <span asp-validation-for="sueldoV" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EstatusV" class="control-label"></label>
+                <input asp-for="EstatusV" class="form-control" />
+                <span asp-validation-for="EstatusV" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ComentarioV" class="control-label"></label>
+                <input asp-for="ComentarioV" class="form-control" />
+                <span asp-validation-for="ComentarioV" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Modificar" class="btn btn-outline-secondary" />
+                <a class="btn btn-outline-danger" asp-action="Index">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
